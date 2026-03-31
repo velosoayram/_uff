@@ -81,7 +81,7 @@ No fim, o programa irá printar '258.0' e 'True':
 
 
 '''
-a) calcular a área do cubo.
+a) RACIOCÍNIO: No código, recebo um valor da aresta do cubo hipotético. Com tal valor é possível calcular a base e então multiplicá-la por 6 (quantidade de faces de um cubo).
 '''
 
 aresta = int(input('DIGITE O TAMANHO DA ARESTA DO SEU CUBO: '))
@@ -90,9 +90,7 @@ area_tot = base * 6
 print(f'A ÁREA TOTAL DO CUBO: {area_tot}')
 
 '''
-b) Escreva um programa que recebe três inteiros como entrada do teclado e escreva na
-tela a média, a soma, o produto, o menor valor e o maior valor, usando uma linha para
-cada resultado.
+b) RACIOCÍNIO: Programa recebe três valores, então por meio de um sequência de comparações é possível definir qual o maior e o menor, além das operações requisitadas de soma, média e o produto.
 '''
 
 n1 = int(input())
@@ -116,17 +114,9 @@ print(f'MENOR:   {menor}') # min(n1, n2, n3)
 print(f'MAIOR:   {maior}') # max(n1, n2, n3)
 
 '''
-c) Em uma loja e CD ́s existem apenas quatro tipos de preços que estão associados a
-cores. Assim os CD ́s que ficam na loja não são marcados por preços e sim por cores.
-Desenvolva o algoritmo que a partir a entrada da cor o software mostre o preço. A loja
-está atualmente com a seguinte tabela de preços.
-
-i. Cor Preço
-ii. Verde R$ 10,00
-iii. Azul R$ 20,00
-iv. Amarelo R$ 30,00
-v. Vermelho R$ 40,00
+c) RACIOCÍNIO: Simples, se x então y. O programa se baseia no input, se obtivermos uma igualdade específica, teremos seu resultado específico.
 '''
+
 verde, azul, amarelo, vermelho = 10, 20, 30, 40
 cor = str(input('COR DO SEU CD: ')).strip().upper()
 if cor == 'VERDE':
@@ -139,10 +129,7 @@ elif cor == 'VERMELHO':
     print(f'PREÇO: {vermelho}')
 
 '''
-d) Escreva um programa que recebe três números e retorna a soma deles, porém se
-houver números repetidos o valor deles não é contabilizado. Por exemplo, na entrada
-(1,2,3) a resposta é 6, na entrada (3,2,3) a resposta é 2 e na entrada (3,3,3) a resposta
-é 0.
+d) RACIOCÍNIO: Ao receber os três valores, é necessário verificar todos entre si para então definir quando deve ser somado e quem deve ser somado à variável soma. Os operadores aritméticos necessitam ser postos reptidas vezes "n1 != n2 and n1 != n3" junto a um operador lógico "and" para verificar casos específicos como "3, 2, 3", já que verificar "n1 != n2 != n3" não funcionaria no Python. 
 '''
 
 n1, n2, n3 = int(input('N1: ')), int(input('N2: ')), int(input('N3: '))
@@ -156,13 +143,7 @@ if n3 != n1 and n3 != n2:
 print(f'RESULTADO: {soma}')
 
 '''
-e) Escreva um programa que receba três números. O programa deve imprimir a palavra
-“soma” se a soma de dois deles for igual ao outro número, caso contrário, o programa
-deve imprimir a palavra “multi” se a multiplicação de dois deles for igual ao outro
-número. Caso nenhuma das duas possibilidades for verdade, então imprimir a palavra
-“par” se a soma dos três números for par, e imprimir a palavra “impar” caso contrário.
-Por exemplo, na entrada (8,3,5) a resposta é “soma”, na entrada (3,3,1) a resposta é
-“multi”, na entrada (8,4,9) a resposta é “impar”.
+e) RACIOCÍNIO: O programa recebe três valores, se dois deles iguais entre si, print("soma") para isso foi utilizado o operador "or" que valida pelo menos um dos casos. Caso não print("soma"), se a multiplicação de dois valores for igual um terceiro, irá print("multi"). Caso nada disso ocorra devemos verificar a soma dos três valores e então print("par") se a soma for par e print("impar") se a soma for impar.
 '''
 
 n1, n2, n3 = int(input('N1: ')), int(input('N2: ')), int(input('N3: '))
@@ -176,17 +157,7 @@ else:
     print('impar')
 
 '''
-f) Faça um programa que leia três coordenadas num espaço 2D e indique se formam um
-triângulo, juntamente com o seu tipo (equilátero, isósceles e escaleno):
-
-i. Equilátero: todos os lados iguais
-ii. Isósceles: dois lados iguais
-iii. Escaleno: todos os lados diferentes
-
-Condição de existência) um triângulo com lados de tamanho a,b,c existe se :
-| b - c | < a < b + c
-| a - c | < b < a + c
-| a - b | < c < a + b
+f) RACIOCÍNIO: Existe uma condição matemática em que se a soma entre dois lados de um triângulo for MAIOR OU IGUAL que a do terceiro lado, o triângulo não é possível. No programa eu comparo os valores para ver se há a possibilidade do triângulo existir. Caso sim, avalio qual a forma do triângulo de coordenadas "c1, c2, c3".
 '''
 
 c1, c2, c3 = int(input('C1: ')), int(input('C2: ')), int(input('C3: '))
@@ -201,23 +172,12 @@ else:
     print('IMPOSSIVEL FORMAR')
 
 '''
-g) Faça um programa que a partir de um número informado em centavos (inteiro), indique
-a menor quantidade de moedas que representa esse valor. Considere moedas de 1,25
-e 50 centavos e 1 real (100 centavos). Exemplo: 290 centavos é representado por 2
-moedas de 1 real, 1 de 50c, 1 de 25c, 15 de 1c.
-
-Dica) Podemos usar as operações de divisão inteira (//) e resto da divisão (%) para
-saber quantas moedas de um tipo podem ser usadas no troco.
-
-Ex: Para um valor de 142 centavos e a moeda de 25 centavos, temos que 142//25=5,
-logo podemos dar 5 moedas de 25 centavos no troco. Além disso, veja que
-142%25=17, logo depois de dar o troco de 5 moedas de 25 centavos, ainda restaria 17
-centavos para dar de troco em moedas de valor menor.
+g) RACIOCÍNIO: O programa necessita de uma forma de conseguir armazenar o valor do que sobra da operações, então a quantidade de cédulas é determinada pelo resultado da divisão da quantidade total de centavos pelo resto da divisão anterior (exceto pelo caso 1: moeda100 // 100). 
 '''
 
 # JEITO //
 centavos = int(input())
-moeda100 = centavos//100
+moeda100 = centavos // 100
 moeda050 = (centavos - moeda100 * 100) // 50
 moeda025 = ((centavos - moeda100 * 100) - moeda050 * 50) // 25
 moeda001 = (((centavos - moeda100 * 100) - moeda050 * 50) - moeda025 * 25) // 1
