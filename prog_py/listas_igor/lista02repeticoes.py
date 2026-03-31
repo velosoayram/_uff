@@ -24,6 +24,18 @@
 
 '''
 
+L = int(input())
+termo1 = termo2 = 1
+if termo1 < L:
+    print(termo1, end = ' ')
+if termo2 < L:
+    print(termo2, end = ' ')
+while termo1 + termo2 <= L:
+    novo = termo1 + termo2
+    print(novo, end = ' ')
+    termo1 = termo2
+    termo2 = novo
+
 # 2) Faça um programa em Python que:
 
 '''
@@ -31,6 +43,8 @@ a) Escreva um programa que permita que o usuário indique um número de inteiros
 lidos (entre 1 e 30). Após a leitura dos “n” números, escreva na tela a média, a soma, o produto,
 o menor valor e o maior valor.
 '''
+
+
 
 '''
 b) Faça um programa para construir a tabela de multiplicação de números de 1 a 10 (ex.: 1 x 1 = 1,
