@@ -67,9 +67,9 @@ print(not True or True and True)
 3 - precisamos testar as afirmações lógicas com a ordem de precedência 'not', 'and', 'or' na expressão print(not True or True and True) 
 '''
 
-not True = False      | False or True and True
-True and True = True  | False or True
-False or True = True  | True
+# not True = False      | False or True and True
+# True and True = True  | False or True
+# False or True = True  | True
     
 '''
 No fim, o programa irá printar '258.0' e 'True':
