@@ -21,7 +21,6 @@
     Atribua termo a termo2
     fim enquanto
     Fim algoritmo.
-
 '''
 
 L = int(input())
@@ -44,22 +43,59 @@ lidos (entre 1 e 30). Após a leitura dos “n” números, escreva na tela a m�
 o menor valor e o maior valor.
 '''
 
-
+n = int(input(r'QUANTOS "n" VALORES QUER LER (1 a 30): '))
+maior = menor = media = soma = produto = 0
+for x in range(n):
+    num = int(input(f'DIGITE O {x+1}° NÚMERO: '))
+    if x == 0:
+        produto = soma = num
+        maior = menor = num
+    else:
+        produto *= num
+        soma += num
+        if num > maior:
+            maior = num
+        elif num < menor:
+            menor = num
+print(f'MAIOR   | {maior}\n'
+      f'MENOR   | {menor}\n'
+      f'SOMA    | {soma}\n'
+      f'MEDIA   | {(soma/n):.1f}\n'
+      f'PRODUTO | {produto}')
 
 '''
 b) Faça um programa para construir a tabela de multiplicação de números de 1 a 10 (ex.: 1 x 1 = 1,
 1 x 2 = 2, ....,2 x 1 = 2, 2 x 2 = 4, ...., etc.).
 '''
 
+for x in range(1, 10+1):
+    print(f'TABUADA DO {x}\n')
+    for y in range(1, 10+1):
+        print(f'{x:>2} * {y:>2} = {x*y:>2}')
+    print()
+
 '''
 c) gerar os cinquenta primeiros termos da série: 1 + N, 5 * N, 9 + N, 13 * N, ..., onde N é um valor
 lido.
 '''
 
+N = int(input())
+termo = 1
+for seq in range(50):
+    if seq == 0 or seq % 2 == 0:
+        print(termo + N, end = ' ')
+    else:
+        print(termo * N, end = ' ')
+    termo += 4
+
 '''
 d) determinar todos os números de 3 algarismos, cujas somas dos cubos dos algarismos sejam
 iguais ao próprio número. Exemplo: 153 = 1**3 + 5**3 + 3**3.
 '''
+
+for x in range(100, 999+1):
+    if ((x // 100)**3) + ((x % 100 // 10)**3) + ((x % 100 % 10)**3) == x:
+        print(x)
 
 '''
 e) Um número inteiro é considerado triangular se este for o produto de 3 números inteiros
@@ -67,11 +103,24 @@ consecutivos, como, por exemplo, 120 = 4 x 5 x 6. Elabore um programa que, após
 número n do teclado, verifique se n é triangular.
 '''
 
+n = int(input())
+termo = produto = 1
+while produto <= n:
+    produto = (termo) * (termo+1) * (termo+2)
+    if produto == n:
+        print(f'{n} é triangular.')
+        break
+    termo += 1
+else:
+    print(f'{n} não é triangular.')
+
 '''
 f) Escreva um programa que imprime na tela os n primeiros números perfeitos. Um número
 perfeito é aquele que é igual à soma dos seus divisores (tirando ele mesmo). Por exemplo, 6 = 1
 + 2 + 3 é perfeito.
 '''
+
+
 
 '''
 g) Suponha que um jogador A de PokemonGO tenha 800 pokemons com uma taxa de anual de
@@ -81,6 +130,8 @@ necessários para que o jogador A ultrapasse ou iguale o número de pokemons do 
 mantidas as taxas de crescimento.
 '''
 
+
+
 '''
 h) Fazer um programa que lê n números inteiros do teclado, e no final informa se os números lidos
 estão ou não em ordem crescente.
@@ -88,15 +139,19 @@ Dica: guarde o número anterior gerado, se em alguma iteração o número fornec
 que o número anterior, a ordem não é crescente.
 '''
 
+
+
 '''
 3) Escreva um programa para gerar dois valores aleatórios inteiros “x” e “y” entre 1 e 100, que
 representam o poder e a resistência de uma carta de Magic (para gerar o número aleatório usar randint).
 Após isso, deve-se gerar a seguinte mensagem: “quanto é o poder x multiplicado pela resistencia y da
 carta ?”, substituindo os números gerados por “x” e “y”. Depois da mensagem, deve ser lida uma resposta
 do teclado e deve ser exibido uma mensagem indicando acerto ou erro. O programa deve implementar um
-laço que obrigue o jogador a acertar pelo menos três vezes a resposta'''
+laço que obrigue o jogador a acertar pelo menos três vezes a resposta
 '''
 
+
+'''
 4) Faça um programa que determina se dois valores inteiros e positivos A e B são “Bros” (dois números
 inteiros são ditos “Bros”, caso não exista divisor comum aos dois números diferente de 1).
 Dica: O método de Euclides é um dos algoritmos mais antigos (300 a.C.) e um dos mais
