@@ -212,6 +212,27 @@ MDC. Por exemplo, MDC(252,105) = MDC(105,42) = MDC(42,21) = 21, pois 42%21
 é igual a zero. Portanto MDC(252,105) = 21.
 '''
 
+maior = menor = 0
+A = int(input())
+B = int(input())
+if A > B:
+    maior = A
+    menor = B
+else:
+    maior = B
+    menor = A
+resto = 1
+while resto != 0:
+    resto = maior%menor
+    if resto == 0:
+        continue
+    maior = menor
+    menor = resto
+if menor == 1:
+    print(f'{A} e {B} ARE BROS | MDC: {menor}')
+else:
+    print(f'{A} e {B} NOT BROS | MDC: {menor}')
+
 '''
 5) Faca um programa que imprima os N (inteiro fornecido pelo usuário) primeiros números da série do
 Kirito A série inicia com os números 2,2, 3 e 3, e cada número posterior equivale a diferença entre a soma
@@ -219,6 +240,33 @@ dos 2 números anteriores multiplicado por 2, e a multiplicação dos 2 números
 o próximo número da série eh (2*(3+3))-(2*2)=8). No fim, pergunte se o usuário quer entrar com outro N
 e repetir o processo.
 '''
+
+while True:
+    N = int(input())
+    termo1 = termo2 = 2
+    termo3 = termo4 = 3
+    if N == 1:
+        print(termo1)
+    elif N == 2:
+        print(termo1, termo2)
+    elif N == 3:
+        print(termo1, termo2, termo3)
+    elif N == 4:
+        print(termo1, termo2, termo3, termo4)
+    else:
+        print(termo1, termo2, termo3, termo4, end = ' ')
+        for x in range(N-4):
+            pos = ((termo3 + termo4) * 2) - (termo1 * termo2)
+            print(pos, end = ' ')
+            termo1 = termo2
+            termo2 = termo3
+            termo3 = termo4
+            termo4 = pos
+    resp = str(input("DESEJA CONTINUAR? [S/N]: ")).strip().upper()
+    while resp not in ['S', 'N']:
+        resp = str(input("DESEJA CONTINUAR? [S/N]: ")).strip().upper()
+    if resp == 'N':
+        break
 
 '''
 6) Calcule a soma da série S de Saitama, dado valores inteiros n e m fornecidos pelo usuário. No fim,
