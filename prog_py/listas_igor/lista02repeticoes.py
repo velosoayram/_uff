@@ -120,7 +120,16 @@ perfeito é aquele que é igual à soma dos seus divisores (tirando ele mesmo). 
 + 2 + 3 é perfeito.
 '''
 
-
+cont = 1
+n = int(input())
+while cont <= n:
+    soma = 0
+    for x in range(1, cont):
+        if cont % x == 0:
+            soma += x
+    if soma == cont:
+        print(f'{cont} eh perfeito.')
+    cont += 1
 
 '''
 g) Suponha que um jogador A de PokemonGO tenha 800 pokemons com uma taxa de anual de
@@ -129,8 +138,17 @@ crescimento/captura de 1.5%. Faça um programa que calcule e retorne o número d
 necessários para que o jogador A ultrapasse ou iguale o número de pokemons do jogador B,
 mantidas as taxas de crescimento.
 '''
-
-
+anos = 0
+jg_a = 800
+jg_b = 2000
+while jg_a < jg_b:
+    jg_a += jg_a * (3/100)
+    jg_b += jg_b * (1.5/100)
+    anos += 1
+if jg_a == jg_b:
+    print(f'Necessitou {anos} ano(s) para que P1 ({jg_a:.0f}) igualasse P2 ({jg_b:.0f}).')
+else:
+    print(f'Necessitou {anos} ano(s) para que P1 ({jg_a:.0f}) ultrapassasse P2 ({jg_b:.0f}).')
 
 '''
 h) Fazer um programa que lê n números inteiros do teclado, e no final informa se os números lidos
@@ -139,7 +157,21 @@ Dica: guarde o número anterior gerado, se em alguma iteração o número fornec
 que o número anterior, a ordem não é crescente.
 '''
 
-
+qtd = int(input())
+num_ant = 0
+crescente = True
+for x in range(qtd):
+    num = int(input())
+    if x == 0:
+        num_ant = num
+    else:
+        if num_ant > num:
+            crescente = False
+        num_ant = num
+if crescente:
+    print('True')
+else:
+    print('False')
 
 '''
 3) Escreva um programa para gerar dois valores aleatórios inteiros “x” e “y” entre 1 e 100, que
@@ -150,6 +182,23 @@ do teclado e deve ser exibido uma mensagem indicando acerto ou erro. O programa 
 laço que obrigue o jogador a acertar pelo menos três vezes a resposta
 '''
 
+from random import randint
+
+cont = 0
+while True:
+    if cont == 3:
+        print('Parabens! Voce terminou o desafio.')
+        break
+    poder_x = randint(1, 100)
+    resis_y = randint(1, 100)
+    mul = poder_x * resis_y
+#    print(mul)
+    resp = int(input('Quanto é o poder x multiplicado pela resistencia y da carta ? '))
+    if resp == mul:
+        print(f'Voce acertou | {mul} era a resposta.')
+        cont += 1
+    else:
+        print(f'Voce errou | {mul} era a resposta.')
 
 '''
 4) Faça um programa que determina se dois valores inteiros e positivos A e B são “Bros” (dois números

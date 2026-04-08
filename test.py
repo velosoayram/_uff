@@ -1,29 +1,11 @@
 '''
-f) Escreva um programa que imprime na tela os n primeiros números perfeitos. Um número
-perfeito é aquele que é igual à soma dos seus divisores (tirando ele mesmo). Por exemplo, 6 = 1
-+ 2 + 3 é perfeito.
+4) Faça um programa que determina se dois valores inteiros e positivos A e B são “Bros” (dois números
+inteiros são ditos “Bros”, caso não exista divisor comum aos dois números diferente de 1).
+Dica: O método de Euclides é um dos algoritmos mais antigos (300 a.C.) e um dos mais
+eficientes para calcular o Máximo Divisor Comum (M.D.C) de dois números inteiros
+O algoritmo se baseia na seguinte propriedade:
+MDC(A,B) = MDC(B, A%B)
+que deve ser explorada iterativamente até que A%B seja 0 e B seja considerado o
+MDC. Por exemplo, MDC(252,105) = MDC(105,42) = MDC(42,21) = 21, pois 42%21
+é igual a zero. Portanto MDC(252,105) = 21.
 '''
-
-cont = 1
-
-n = int(input())
-
-while cont < n:
-    
-    soma = 0
-
-    for x in range(1, cont+1):
-
-        if cont+1 == x:
-
-            break
-
-        if cont % (x+1) == 0:
-
-            soma += (x+1)
-
-    if soma == cont:
-
-        print(f'{cont} É PERFEITO.')
-
-    cont += 1
