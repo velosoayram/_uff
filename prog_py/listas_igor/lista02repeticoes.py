@@ -1,7 +1,7 @@
-
-# 1) Interpretar e traduzir para Python a sequência de comandos em Português a seguir:
-
 '''
+1) Interpretar e traduzir para Python a sequência de comandos em Português a seguir:
+
+
     Algoritmo {escrita dos termos de Fibonacci menores que L}
     leia o valor L
     {Processamento dos dois primeiros termos}
@@ -35,9 +35,10 @@ while termo1 + termo2 <= L:
     termo1 = termo2
     termo2 = novo
 
-# 2) Faça um programa em Python que:
 
 '''
+2) Faça um programa em Python que:
+
 a) Escreva um programa que permita que o usuário indique um número de inteiros “n” a serem
 lidos (entre 1 e 30). Após a leitura dos “n” números, escreva na tela a média, a soma, o produto,
 o menor valor e o maior valor.
@@ -273,9 +274,121 @@ while True:
 pergunte se o usuário quer repetir a operação.
 '''
 
+while True:
+    n = int(input())
+    m = int(input())
+    S = 0
+    for i in range(1, n+1):
+        for j in range(1, m+1):
+            S += ((i**2) * j) / ((3**i) * (j * (3**i) + i * (3**j)))
+    print(f'O RESULTADO S = {S} | COM m = {m}, n = {n}')
+    resp = str(input('DESEJA REPETIR? [S/N]: ')).upper().strip()
+    while resp not in ['S', 'N']:
+        resp = str(input('ERRO | [S/N]: ')).upper().strip()
+    if resp == 'N':
+        break
+
 '''
 7) Faça um jogo de pedra, papel, tesoura, spock e lagarto (de onde vem isso?), onde o jogador e o
-computador escolhem entre “0-pedra 1-spock 2-paper 3-lagarto 4-tesoura” (a jogado do computador é
+computador escolhem entre “0-pedra 1-spock 2-paper 3-lagarto 4-tesoura” (a jogada do computador é
 aleatória). Ganha o jogo quem vencer 3 vezes primeiro (As regras de vitória estão descritas na figura
 abaixo).
 '''
+
+from random import randint
+
+
+cont_pc = cont_player = 0
+while True:
+    print('0 - PEDRA\n'
+        '1 - SPOCK\n'
+        '2 - PAPEL\n'
+        '3 - LAGARTO\n'
+        '4 - TESOURA')
+    pc = randint(0, 4)
+    player = int(input('ESCOLHA SEU NUM (0 A 4): '))
+    while player not in [0, 1, 2, 3, 4]:
+        player = int(input('ERRO | ESCOLHA SEU NUM (0 A 4): '))
+    print()
+    if pc == 0: # pedra
+        if player == 0:
+            print('EMPATE! AMBOS ESCOLHERAM PEDRA')
+        elif player == 1:
+            print('GANHOU! PONTO PRO PLAYER (SPOCK)     | PC: PEDRA.')
+            cont_player += 1
+        elif player == 2:
+            print('GANHOU! PONTO PRO PLAYER (PAPEL)     | PC: PEDRA.')
+            cont_player += 1
+        elif player == 3:
+            print('PERDEU! PONTO PRO PC (PEDRA)         | VOCE: LAGARTO.')
+            cont_pc += 1
+        else:
+            print('PERDEU! PONTO PRO PC (PEDRA)         | VOCE: TESOURA')
+            cont_pc += 1
+    elif pc == 1: # spock
+        if player == 0:
+            print('PERDEU! PONTO PRO PC (SPOCK)         | VOCE: PEDRA.')
+            cont_pc += 1
+        elif player == 1:
+            print('EMPATE! AMBOS ESCOLHERAM SPOCK')
+        elif player == 2:
+            print('GANHOU! PONTO PRO PLAYER (PAPEL)     | PC: SPOCK.')
+            cont_player += 1
+        elif player == 3:
+            print('GANHOU! PONTO PRO PLAYER (LAGARTO)   | PC: SPOCK.')
+            cont_player += 1
+        else:
+            print('PERDEU! PONTO PRO PC (SPOCK)         | VOCE: TESOURA.')
+            cont_pc += 1
+    elif pc == 2: # papel
+        if player == 0:
+            print('PERDEU! PONTO PRO PC (PAPEL)         | VOCE: PEDRA.')
+            cont_pc += 1
+        elif player == 1:
+            print('PERDEU! PONTO PRO PC (PAPEL)         | VOCE: SPOCK.')
+            cont_pc += 1
+        elif player == 2:
+            print('EMPATE! AMBOS ESCOLHERAM PAPEL')
+        elif player == 3:
+            print('GANHOU! PONTO PRO PLAYER (LAGARTO)   | PC: PAPEL.')
+            cont_player += 1
+        else:
+            print('GANHOU! PONTO PRO PLAYER (TESOURA)   | PC: PAPEL.')
+            cont_player += 1
+    elif pc == 3: # lagarto
+        if player == 0:
+            print('GANHOU! PONTO PRO PLAYER (PEDRA)     | PC: LAGARTO.')
+            cont_player += 1
+        elif player == 1:
+            print('PERDEU! PONTO PRO PC (LAGARTO)       | VOCE: SPOCK.')
+            cont_pc += 1
+        elif player == 2:
+            print('PERDEU! PONTO PRO PC (LAGARTO)       | VOCE: PAPEL.')
+            cont_pc += 1
+        elif player == 3:
+            print('EMPATE! AMBOS ESCOLHERAM LAGARTO')
+        else:
+            print('GANHOU! PONTO PRO PLAYER (TESOURA)   | PC: LAGARTO.')
+            cont_player += 1
+    else: # tesoura
+        if player == 0:
+            print('GANHOU! PONTO PRO PLAYER (PEDRA)     | PC: TESOURA.')
+            cont_player += 1
+        elif player == 1:
+            print('GANHOU! PONTO PRO PLAYER (SPOCK)     | PC: TESOURA.')
+            cont_player += 1
+        elif player == 2:
+            print('PERDEU! PONTO PRO PC (TESOURA)       | VOCE: PAPEL.')
+            cont_pc += 1
+        elif player == 3:
+            print('PERDEU! PONTO PRO PC (TESOURA)       | VOCE: LAGARTO.')
+            cont_pc += 1
+        else:
+            print('EMPATE! AMBOS ESCOLHERAM TESOURA')
+    print()
+    if cont_pc == 3 or cont_player == 3:
+        break
+if cont_pc == 3:
+    print(f'PC GANHOU!')
+else:
+    print('VOCE GANHOU!')
