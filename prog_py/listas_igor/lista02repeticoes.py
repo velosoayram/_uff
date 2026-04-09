@@ -23,18 +23,21 @@
     Fim algoritmo.
 '''
 
-L = int(input())
-termo1 = termo2 = 1
-if termo1 < L:
-    print(termo1, end = ' ')
-if termo2 < L:
-    print(termo2, end = ' ')
-while termo1 + termo2 <= L:
-    novo = termo1 + termo2
-    print(novo, end = ' ')
-    termo1 = termo2
-    termo2 = novo
+# a explicação desse código se dá basicamente pelo enunciado todo dele.
+# ao pé da letra seria exatamente o código abaixo, embora fizesse mais sentido rodar o código dentro de um loop com contador, ou igualando os "termos <= L".
+# ex1: se L == 2, o output sairá "1 1 2" ao invés de "1 1" | ex2: se L == 1, o output sairá "1 1" ao invés de "1".
 
+L = int(input())
+termo1 = termo2 = 1 # declaração encadeada.
+if termo1 < L: # se termo1 menor que L mostre na tela.
+    print(termo1, end = ' ')
+if termo2 < L: # se termo2 menor que L mostre na tela.
+    print(termo2, end = ' ')
+while termo1 + termo2 <= L: # enquanto soma deles menor ou igual a L.
+    novo = termo1 + termo2
+    print(novo, end = ' ') # mostre na tela.
+    termo1 = termo2 # substituição dos termos para a sequencia rodar progressivamente.
+    termo2 = novo
 
 '''
 2) Faça um programa em Python que:
@@ -44,19 +47,19 @@ lidos (entre 1 e 30). Após a leitura dos “n” números, escreva na tela a m�
 o menor valor e o maior valor.
 '''
 
-n = int(input(r'QUANTOS "n" VALORES QUER LER (1 a 30): '))
-maior = menor = media = soma = produto = 0
-for x in range(n):
-    num = int(input(f'DIGITE O {x+1}° NÚMERO: '))
-    if x == 0:
-        produto = soma = num
-        maior = menor = num
-    else:
+n = int(input(r'QUANTOS "n" VALORES QUER LER (1 a 30): ')) # input para ler até "n" números.
+maior = menor = media = soma = produto = 0 # declaração encadeada.
+for x in range(n): # no raio dos "n" números.
+    num = int(input(f'DIGITE O {x+1}° NÚMERO: ')) # digite um número da sua sequéncia de "n" números.
+    if x == 0: # verificação inicial do contador, necessária para impedir que alguma equação, como a *, seja feita por 0.
+        produto = soma = num # se a variável soma fosse declarada com valor 1, teria um excedente no seu resultado.
+        maior = menor = num # se igualando tudo à variável num, o risco de multiplicar 0 some.
+    else: # se não o primeiro item, faça as operações.
         produto *= num
         soma += num
-        if num > maior:
+        if num > maior: # declaração do maior por comparação.
             maior = num
-        elif num < menor:
+        elif num < menor: # declaração do menor por comparação.
             menor = num
 print(f'MAIOR   | {maior}\n'
       f'MENOR   | {menor}\n'
@@ -69,11 +72,13 @@ b) Faça um programa para construir a tabela de multiplicação de números de 1
 1 x 2 = 2, ....,2 x 1 = 2, 2 x 2 = 4, ...., etc.).
 '''
 
-for x in range(1, 10+1):
-    print(f'TABUADA DO {x}\n')
-    for y in range(1, 10+1):
-        print(f'{x:>2} * {y:>2} = {x*y:>2}')
-    print()
+# loops aninhados para que ocorra todas as possibilidades de multiplicações até 10, entre os números de 1 a 10.
+
+for x in range(1, 10+1):  # no raio de "x".
+    print(f'TABUADA DO {x}\n') # "x" sendo o contador do loop [1] = TABUADA DO 1.
+    for y in range(1, 10+1): # "y" é o número pelo qual está sendo multiplicado "x".
+        print(f'{x:>2} * {y:>2} = {x*y:>2}') # formatação de string para melhor visual.
+    print() # espaço em branco para separar os outputs.
 
 '''
 c) gerar os cinquenta primeiros termos da série: 1 + N, 5 * N, 9 + N, 13 * N, ..., onde N é um valor
@@ -82,21 +87,26 @@ lido.
 
 N = int(input())
 termo = 1
-for seq in range(50):
-    if seq == 0 or seq % 2 == 0:
+for seq in range(50): # no raio dos 50 termos.
+    if seq == 0 or seq % 2 == 0: # há um pequeno detalhe, toda vez que o contador for par, em equivalência, na sequéncia será uma soma.
         print(termo + N, end = ' ')
-    else:
+    else: # toda vez que o contador for ímpar, em equivalência, na sequéncia será uma multiplicação.
         print(termo * N, end = ' ')
-    termo += 4
+    termo += 4 # a razão entre os termos inteiros definidos na sequência é de 4 em 4: [1, 5, 9, 13, ...].
 
 '''
 d) determinar todos os números de 3 algarismos, cujas somas dos cubos dos algarismos sejam
 iguais ao próprio número. Exemplo: 153 = 1**3 + 5**3 + 3**3.
 '''
 
-for x in range(100, 999+1):
-    if ((x // 100)**3) + ((x % 100 // 10)**3) + ((x % 100 % 10)**3) == x:
+for x in range(100, 999+1): # no raio de todos os números de três algarismos.
+    if ((x // 100)**3) + ((x % 100 // 10)**3) + ((x % 100 % 10)**3) == x: # a validação matemática, isolando as centenas, dezenas e unidades e operando sobre elas.
         print(x)
+
+# o isolamento.
+# CENTENA: a divisão inteira de 123 // 100 = 1 centena.
+# DEZENA: o resto da divisão de 123 % 100 = 23 | 23 // 10 = 2 dezenas.
+# UNIDADE: o resto da divisão de 123 % 100 = 23 | 23 % 10 = 3 unidades.
 
 '''
 e) Um número inteiro é considerado triangular se este for o produto de 3 números inteiros
@@ -105,14 +115,14 @@ número n do teclado, verifique se n é triangular.
 '''
 
 n = int(input())
-termo = produto = 1
-while produto <= n:
-    produto = (termo) * (termo+1) * (termo+2)
-    if produto == n:
+termo = produto = 1 # declaração encadeada.
+while produto <= n: # enquanto o produto não ultrapassar o termo "n".
+    produto = (termo) * (termo+1) * (termo+2) # produto é a multiplicação de três termos consecutivos.
+    if produto == n: # se produto chegar ao exato valor de "n", mostre e pare.
         print(f'{n} é triangular.')
         break
-    termo += 1
-else:
+    termo += 1 # garantia do término do loop.
+else: # se não for triangular, o loop quebra por produto ser maior que o termo "n".
     print(f'{n} não é triangular.')
 
 '''
@@ -129,7 +139,7 @@ while cont <= n:
         if cont % x == 0:
             soma += x
     if soma == cont:
-        print(f'{cont} eh perfeito.')
+        print(f'{cont} é perfeito.')
     cont += 1
 
 '''
