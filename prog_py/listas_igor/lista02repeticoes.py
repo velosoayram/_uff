@@ -131,16 +131,17 @@ perfeito é aquele que é igual à soma dos seus divisores (tirando ele mesmo). 
 + 2 + 3 é perfeito.
 '''
 
-cont = 1
 n = int(input())
-while cont <= n:
-    soma = 0
-    for x in range(1, cont):
-        if cont % x == 0:
-            soma += x
-    if soma == cont:
-        print(f'{cont} é perfeito.')
-    cont += 1
+flag = cont = 1 
+while flag <= n:
+    soma_div = 0
+    for x in range(1, (cont//2)+1): # o raio vai até a metade do número da vez: se eu não preciso do próprio número na soma, e nenhum divisor "x" é
+        if cont % x == 0:           # maior que o dobro do dividendo, é possível definir o raio como a metade do valor, otimizando as operações.
+            soma_div += x
+    if soma_div == cont: # se soma dos divisores obtidos igual ao número da vez, mostre.
+        print(soma_div)
+        flag += 1 # a flag é o que define quantos números perfeitos apareceram, então o loop acaba.
+    cont += 1 # contador que corresponde ao número da vez dentro do loop.
 
 '''
 g) Suponha que um jogador A de PokemonGO tenha 800 pokemons com uma taxa de anual de
@@ -149,13 +150,14 @@ crescimento/captura de 1.5%. Faça um programa que calcule e retorne o número d
 necessários para que o jogador A ultrapasse ou iguale o número de pokemons do jogador B,
 mantidas as taxas de crescimento.
 '''
+
 anos = 0
 jg_a = 800
 jg_b = 2000
-while jg_a < jg_b:
-    jg_a += jg_a * (3/100)
+while jg_a < jg_b: # condição de parada até que o jogador A alcance o jogador B.
+    jg_a += jg_a * (3/100) # porcentagens aplicadas sobre o valor de acordo com o enunciado.
     jg_b += jg_b * (1.5/100)
-    anos += 1
+    anos += 1 # anos que se passam a cada porcentagem aplicada sobre o valor da vez.
 if jg_a == jg_b:
     print(f'Necessitou {anos} ano(s) para que P1 ({jg_a:.0f}) igualasse P2 ({jg_b:.0f}).')
 else:
@@ -168,17 +170,17 @@ Dica: guarde o número anterior gerado, se em alguma iteração o número fornec
 que o número anterior, a ordem não é crescente.
 '''
 
+# o enunciado não abordou nada sobre números negativos, mas calhou de otimizar.
+
 qtd = int(input())
-num_ant = 0
-crescente = True
-for x in range(qtd):
+num_ant = None # declaração vazia.
+crescente = True # ou é crescente, ou não (ou 0 ou 1).
+for x in range(qtd): # no raio da quantidade, coloque os números da sequência.
     num = int(input())
-    if x == 0:
-        num_ant = num
-    else:
-        if num_ant > num:
+    if x > 0: # graças a essa condição, o "x" inicia em 0, então pula e define a variável "num_ant" como int() no primeiro loop, evitando conflito do None > num.
+        if num_ant > num: # type: ignore 
             crescente = False
-        num_ant = num
+    num_ant = num # por quê? se iniciasse "num_ant" como 0, ao escrever uma sequência com números negativos, ela já seria False na primeira iteração (-n < 0).
 if crescente:
     print('True')
 else:
@@ -193,22 +195,23 @@ do teclado e deve ser exibido uma mensagem indicando acerto ou erro. O programa 
 laço que obrigue o jogador a acertar pelo menos três vezes a resposta
 '''
 
+# esse desafio é o puro suco do sadismo, pior que acertar na mega-sena:
+
 from random import randint
 
-cont = 0
+cont = 0 # flag do loop, quando acertar 3 vezes, acaba.
 while True:
     if cont == 3:
         print('Parabens! Voce terminou o desafio.')
         break
     poder_x = randint(1, 100)
     resis_y = randint(1, 100)
-    mul = poder_x * resis_y
-#    print(mul)
+    mul = poder_x * resis_y # valor questionado no enunciado - do poder pela multiplicação.
     resp = int(input('Quanto é o poder x multiplicado pela resistencia y da carta ? '))
-    if resp == mul:
+    if resp == mul: # se acertar a multiplicação, soma 1.
         print(f'Voce acertou | {mul} era a resposta.')
-        cont += 1
-    else:
+        cont += 1 
+    else: # se errar a multiplicação, mostra o valor correto e depois no decorrer do loop se altera o valor novamente.
         print(f'Voce errou | {mul} era a resposta.')
 
 '''
@@ -223,22 +226,26 @@ MDC. Por exemplo, MDC(252,105) = MDC(105,42) = MDC(42,21) = 21, pois 42%21
 é igual a zero. Portanto MDC(252,105) = 21.
 '''
 
-maior = menor = 0
-A = int(input())
-B = int(input())
-if A > B:
-    maior = A
-    menor = B
-else:
-    maior = B
-    menor = A
+# BROS - números primos entre si.
+
 resto = 1
-while resto != 0:
-    resto = maior%menor
-    if resto == 0:
-        continue
+maior = menor = 0
+A, B = int(input()), int(input()) # declaração múltipla
+
+if A > B: # aqui eu faço um bloco de controle de maior/menor | ajuda na visualização e na comparação do bloco abaixo.
+    maior, menor = A, B
+else: # seria possível resolver a atribuição de variáveis com as funções max([A, B]) e min([A, B]).
+    maior, menor = B, A
+
+while True: # no loop, preciso verificar igualdades e trocar o valor de variáveis conforme as operações ocorrem.
+
+    resto = maior%menor # aqui é onde se instala a variável temporária, que se atualiza a cada iteração.
+
+    if resto == 0: # como no enunciado, se a divisão do maior termo pelo menor obtiver resto 0, concluímos o objetivo.
+        break # graças ao break, na última iteração permanecemos com o valor "menor" sendo o MDC da última iteração.
     maior = menor
     menor = resto
+
 if menor == 1:
     print(f'{A} e {B} ARE BROS | MDC: {menor}')
 else:
@@ -252,10 +259,12 @@ o próximo número da série eh (2*(3+3))-(2*2)=8). No fim, pergunte se o usuár
 e repetir o processo.
 '''
 
+# não há muito aqui, um loop com operações conforme a quantidade de "N" lida.
+
 while True:
     N = int(input())
     termo1 = termo2 = 2
-    termo3 = termo4 = 3
+    termo3 = termo4 = 3 # definição dos primeiros 4 termos da sequência (2, 2, 3, 3).
     if N == 1:
         print(termo1)
     elif N == 2:
@@ -264,17 +273,17 @@ while True:
         print(termo1, termo2, termo3)
     elif N == 4:
         print(termo1, termo2, termo3, termo4)
-    else:
+    else: # se "N" for maior que 4 roda, mostram todos os termos e roda um loop.
         print(termo1, termo2, termo3, termo4, end = ' ')
-        for x in range(N-4):
-            pos = ((termo3 + termo4) * 2) - (termo1 * termo2)
+        for x in range(N-4): # consequentemente, com os 4 termos mostrados, o raio do loop deve ser subtraído em 4.
+            pos = ((termo3 + termo4) * 2) - (termo1 * termo2) # a operação exigida para os termos.
             print(pos, end = ' ')
             termo1 = termo2
             termo2 = termo3
             termo3 = termo4
-            termo4 = pos
+            termo4 = pos # a troca em sequência dos termos substituindo um ao outro pelo seu sucessor.
     resp = str(input("DESEJA CONTINUAR? [S/N]: ")).strip().upper()
-    while resp not in ['S', 'N']:
+    while resp not in ['S', 'N']: # uso do operador "in" para validar se o usuário quer continuar o processo.
         resp = str(input("DESEJA CONTINUAR? [S/N]: ")).strip().upper()
     if resp == 'N':
         break
@@ -285,15 +294,17 @@ pergunte se o usuário quer repetir a operação.
 '''
 
 while True:
-    n = int(input())
-    m = int(input())
-    S = 0
-    for i in range(1, n+1):
-        for j in range(1, m+1):
-            S += ((i**2) * j) / ((3**i) * (j * (3**i) + i * (3**j)))
+    S = 0 # a variável da soma total
+    n, m = int(input()), int(input())
+
+    for i in range(1, n+1): # basicamente, o somatório de i=1 a "n" do somatório abaixo.
+        for j in range(1, m+1): # o somatório de j=1 a "m" da expressão abaixo.
+            S += ((i**2) * j) / ((3**i) * (j * (3**i) + i * (3**j))) # a expressão requisitada variando os valores de "i" e "j".
+
     print(f'O RESULTADO S = {S} | COM m = {m}, n = {n}')
+    
     resp = str(input('DESEJA REPETIR? [S/N]: ')).upper().strip()
-    while resp not in ['S', 'N']:
+    while resp not in ['S', 'N']: # repetição da operação
         resp = str(input('ERRO | [S/N]: ')).upper().strip()
     if resp == 'N':
         break
@@ -304,6 +315,9 @@ computador escolhem entre “0-pedra 1-spock 2-paper 3-lagarto 4-tesoura” (a j
 aleatória). Ganha o jogo quem vencer 3 vezes primeiro (As regras de vitória estão descritas na figura
 abaixo).
 '''
+
+# um JO-KEN-PO um pouco modificado, uma série de comparações dentro de um while.
+# fazer com listas otimizaria.
 
 from random import randint
 
