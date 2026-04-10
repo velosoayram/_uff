@@ -1,3 +1,5 @@
+# PAR OU ÍMPAR:
+
 vencedores = []
 while True:
     temp = []
