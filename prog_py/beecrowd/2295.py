@@ -1,4 +1,4 @@
-# FROTA DE TÁXI
+# FROTA DE TÁXI.
 
 valor = input().split()
 vA, vG, rA, rG = float(valor[0]), float(valor[1]), float(valor[2]), float(valor[3])

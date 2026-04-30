@@ -1,4 +1,4 @@
-# XADREZ
+# XADREZ.
 
 l, c = int(input()), int(input())
 if c % 2 == 0 and l % 2 != 0:

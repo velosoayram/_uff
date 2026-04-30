@@ -1,4 +1,4 @@
-# QUERMESSE
+# QUERMESSE.
 
 n, r, cont = int(input()), 1, 1
 while n != 0:

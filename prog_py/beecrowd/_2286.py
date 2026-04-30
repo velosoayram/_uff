@@ -1,4 +1,4 @@
-# PAR OU ÍMPAR:
+# PAR OU ÍMPAR.
 
 vencedores = []
 while True:
