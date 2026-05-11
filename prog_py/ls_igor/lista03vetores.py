@@ -71,20 +71,3 @@ vetor = [2.5, 7.5, 10.0, 4.0]
 (média = 6.0)
 Valor mais próximo da média = 7.5
 '''
-
-from random import randint
-from os import maxsize
-
-
-vetor = [randint(1, 100) for _ in range(100)]
-media = sum(vetor) / 100
-dif, menor = 0, maxsize
-
-if media in vetor:
-    print(f'VETOR: {vetor}\nMEDIA: {media}\nVALOR MAIS PROX: {menor}')
-else:
-    for x in vetor:
-        dif = abs(x - media)
-        if dif < menor:
-            menor = dif
-    print(f'VETOR: {vetor}\nMEDIA: {media}\nVALOR MAIS PROX: {menor}')
