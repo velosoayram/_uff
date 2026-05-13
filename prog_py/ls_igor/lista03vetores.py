@@ -41,17 +41,7 @@ from random import randint
 
 n, c1, c2 = int(input()), 0, -1
 la, lb = [randint(-10, 15) for _ in range(n)], []
-
-# for x in range(n // 2):
-#     temp = la[c1]
-#     la[c1] = la[c2]
-#     la[c2] = temp
-#     c1 += 1
-#     c2 -= 1
-
-print(la)
 la = la[::-1]
-
 for x in la:
     if x < 0:
         lb.append(x)
@@ -71,3 +61,93 @@ vetor = [2.5, 7.5, 10.0, 4.0]
 (média = 6.0)
 Valor mais próximo da média = 7.5
 '''
+
+from random import randint
+from math import trunc
+from sys import maxsize
+
+vetor = [randint(1, 10) for _ in range(100)]
+media = sum(vetor) / 100
+menor, dif, valor = maxsize, 0, 0
+for x in vetor:
+    dif = abs(media - x)
+    if dif == 0:
+        valor = x
+        break
+    if dif < menor:
+        menor = dif
+        valor = x
+print(f'O VALOR {valor} É O MAIS PRÓXIMO DA MÉDIA {media} DO VETOR.')
+
+
+'''
+5) Faça um programa que receba duas listas, uma de tamanho N e outra de tamanho M. O programa deve percorrer as duas listas e intercalar os elementos de ambas, formando uma
+terceira lista. A terceira lista deve começar pelo primeiro elemento da lista menor. Quando acabar de intercalar os elementos, se ainda tiver elementos sobrando na lista maior, colocar esses elementos no fim da terceira lista.
+
+Exemplo:
+v1 = [1, 7, 3, 9]
+v2 = [10, 2, 47, 40, 93, 8]
+v3 = [1, 10, 7, 2, 3, 47, 9, 40, 93, 8]
+'''
+
+from random import randint
+
+n, m, i = int(input('VALOR N: ')), int(input('VALOR M: ')), 0
+l1, l2, l3 = [randint(1, 10) for _ in range(n)], [randint(1, 10) for _ in range(m)], []
+while len(l3) != (n+m):
+    if n < m:
+        if i < len(l1):
+            l3.append(l1[i])
+        if i < len(l2):
+            l3.append(l2[i])
+    else:
+        if i < len(l2):
+            l3.append(l2[i])
+        if i < len(l1):
+            l3.append(l1[i])
+    i += 1
+print(l3)
+
+
+'''
+6) Escreva um programa que:
+
+(a) O funcionário fornecerá o número de candidatos N, o nome e as 3 notas de cada
+candidato. O programa deve armazenar os nomes dos candidatos em uma lista e a média das
+notas em outra lista (dado as 3 notas).
+
+(b) Apresentar um relatório apresentando o nome dos candidatos em ordem crescente
+de classificação de acordo com a média obtida, como exemplo abaixo. Para isso as listas
+devem ser ordenadas ao mesmo tempo (por algum método).
+'''
+
+n, c = int(input()), 0
+nomes, medias = [], []
+
+for i in range(n):
+    nome, nota1, nota2, nota3 = input(), int(input()), int(input()), int(input())
+    nomes.append(nome)
+    medias.append((nota1 + nota2 + nota3) / 3)
+candidatos = sorted(zip(nomes, medias), reverse = True)
+for v in candidatos:
+    print(f'NOME: {v[0]:<8}  |  MEDIA: {v[1]:.2f}')
+
+'''
+7) Faça um programa que simule uma agenda telefônica onde o usuário informe os telefones
+(inteiros) e você deverá inserir estes valores de forma ordenada uma lista. O usuário deve ser
+capaz de inserir até 100 telefones. A cada número inserido, imprima a agenda.
+Ex:
+Insere 2211
+Agenda=[2211]
+Insere 923
+Agenda=[923,2211]
+Insere 1555
+Agenda=[923,1555,2211]
+'''
+
+agenda = []
+for a in range(100):
+    num = int(input())
+    agenda.append(num)
+    agenda.sort()
+    print(agenda)

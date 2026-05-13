@@ -1,17 +1,19 @@
-from random import randint
-from sys import maxsize
+'''
+7) Faça um programa que simule uma agenda telefônica onde o usuário informe os telefones
+(inteiros) e você deverá inserir estes valores de forma ordenada uma lista. O usuário deve ser
+capaz de inserir até 100 telefones. A cada número inserido, imprima a agenda.
+Ex:
+Insere 2211
+Agenda=[2211]
+Insere 923
+Agenda=[923,2211]
+Insere 1555
+Agenda=[923,1555,2211]
+'''
 
-vetor = [randint(1, 100) for _ in range(100)]
-media = sum(vetor) / 100
-dif, menor = 0, maxsize
-
-
-
-if media in vetor:
-    print(f'VETOR: {vetor}\nMEDIA: {media}\nVALOR MAIS PROX: {menor}')
-else:
-    for x in vetor:
-        dif = abs(x - media)
-        if dif < menor:
-            menor = x
-    print(f'VETOR: {vetor}\nMEDIA: {media}\nVALOR MAIS PROX: {menor}')
+agenda = []
+for a in range(100):
+    num = int(input())
+    agenda.append(num)
+    agenda.sort()
+    print(agenda)
