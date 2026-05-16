@@ -1,0 +1,1 @@
+# TRIÂNGULO INTERNO.
