@@ -218,4 +218,3 @@ for a in range(100):
     agenda[j+1] = chave # quando então, os elementos maiores vão sendo copiados à direita de agenda[j], o loop termina quando j = -1, ou agenda[j] já é menor ou igual à chave
                         # e aí entra o [j + 1], já que j não pode ser -1, e [j + 1] se trata de uma cópia feita dentro do loop para possivelmente ocupar a chave.
     print(agenda)
-
