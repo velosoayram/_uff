@@ -1,4 +1,4 @@
-# CAÇADORES DE MITOS.
+# CAÇADORES DE MITOS. / runtime error / refazer
 
 n = int(input())
 
