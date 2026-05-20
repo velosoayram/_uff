@@ -1,3 +1,3 @@
-# TRILHAS. / wrong answer 45% / refazer
+# TRILHAS. / refazer /
 
 n = int(input())
