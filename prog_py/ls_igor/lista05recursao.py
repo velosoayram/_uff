@@ -19,16 +19,19 @@ def eh_palindromo(palavra, inicio = 0, fim = None):
 
     if inicio >= fim: 
         return True
-    # quando o índice chegar ao valor do final, significa que durante as recurssões diminuímos
-    # à ponto de iterarmos sobre a mesma letra e caso isso, uma única letra é palíndromo dela mesma.
+    
+    # quando o índice chegar ao valor do final, significa que, durante as recursões, diminuímos
+    # a ponto de iterarmos sobre a mesma letra e, caso isso, uma única letra é palíndromo dela mesma.
     # então retornamos True.
 
     if palavra[inicio] != palavra[fim]:
         return False
+    
     # basicamente, se a letra do ínicio for diferente da do final, já não é palíndromo
     # então retorna False.
 
     return eh_palindromo(palavra, inicio + 1, fim - 1)
+
     # aqui ocorre as trocas de índices, diminuindo a palavra durante as recursões.
     # ex: 'radar' -> 'ada' -> 'd' : palíndromo.
 
@@ -43,10 +46,12 @@ def eh_palindromo2(palavra):
     
     if len(palavra) <= 1:
         return True
+    
     # ao invés de compararmos por índices, fazemos por len() da palavra, já que durante as recursões estamos iterando sobre 
     # cópias reduzidas da mesma palavra, então se a cópia chegar ao ponto de ter len() = 1, significa que é um palíndromo.
 
     return eh_palindromo2(palavra[1:-1])
+
     # as cópias recursivas.
 
 x = input()
@@ -152,7 +157,8 @@ def media(a, b, c):
 
 def suavizar(f, lista):
 
-    resultado = lista[:] 
+    resultado = lista[:]
+    
     # aqui precisamos criar uma lista de cópia, já que iremos manipular apenas alguns valores seletos da lista original,
     # sem alteração do primeiro e último termo.
 
