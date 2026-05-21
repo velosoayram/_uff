@@ -14,23 +14,40 @@ Dica III: Teste a função para palavras de tamanho par e de tamanho ímpar.
 
 def eh_palindromo(palavra, inicio = 0, fim = None):
 
-    if inicio == 0:
+    if inicio == 0: # caso a primeira recursão, definimos o fim como o último índice da palavra escolhida.
         fim = len(palavra) - 1
-    if inicio >= fim:
+
+    if inicio >= fim: 
         return True
+    # quando o índice chegar ao valor do final, significa que durante as recurssões diminuímos
+    # à ponto de iterarmos sobre a mesma letra e caso isso, uma única letra é palíndromo dela mesma.
+    # então retornamos True.
+
     if palavra[inicio] != palavra[fim]:
         return False
+    # basicamente, se a letra do ínicio for diferente da do final, já não é palíndromo
+    # então retorna False.
+
     return eh_palindromo(palavra, inicio + 1, fim - 1)
+    # aqui ocorre as trocas de índices, diminuindo a palavra durante as recursões.
+    # ex: 'radar' -> 'ada' -> 'd' : palíndromo.
+
 
 
 def eh_palindromo2(palavra):
 
+    # executa a mesma função que a anterior, mas usando slicing (quis inventar sem parâmetros auxiliares).
+
     if palavra[0] != palavra[-1]:
         return False
+    
     if len(palavra) <= 1:
         return True
-    return eh_palindromo2(palavra[1:-1])
+    # ao invés de compararmos por índices, fazemos por len() da palavra, já que durante as recursões estamos iterando sobre 
+    # cópias reduzidas da mesma palavra, então se a cópia chegar ao ponto de ter len() = 1, significa que é um palíndromo.
 
+    return eh_palindromo2(palavra[1:-1])
+    # as cópias recursivas.
 
 x = input()
 print(eh_palindromo2(x)) 
@@ -61,13 +78,32 @@ def soma_bignum(s1 = str, s2 = str, i = 0, vaium = 0):
 
     if i >= len(s1) and i >= len(s2) and vaium == 0:
         return ''
+    
+    # as recursões só ocorrem até onde os índices são possíveis e não há excedente (vaium = 0).
+
     digito1 = int(s1[i]) if i < len(s1) else 0
     digito2 = int(s2[i]) if i < len(s2) else 0
-    soma = digito1 + digito2 + vaium
-    atual  = soma % 10
-    vaium_novo = soma // 10
-    return str(atual) + soma_bignum(s1, s2, (i + 1), vaium_novo)
 
+    # os dígitos são definidos enquanto os índices são menores que o len() das strings,
+    # caso um dígito não seja possível, ele se tranforma em zero, possibilitando a soma do mesmo jeito.
+
+    soma = digito1 + digito2 + vaium
+    
+    # as somas são os digitos acima e o excedente.
+
+    atual  = soma % 10
+
+    # nosso dígito da recursão atual é definido pelo resto da divisão de 10, já que os digitos possíveis numa casa decimal
+    # é o intervalo de 0 a 9.
+
+    vaium_novo = soma // 10
+
+    # caso haja excedente, ele será considerado para recursões futuras num novo argumento.
+
+    return str(atual) + soma_bignum(s1, s2, (i + 1), vaium_novo) 
+
+    # as recursões levam o digíto atual concatenados ao resultados dos dígitos futuros.
+    # ao chegar no caso base, os números são enfim concatenados da direita para a esquerda.
 
 s1, s2, i, vaium = '9', '1', 0, 0
 print(soma_bignum(s1, s2, i, vaium))
@@ -110,14 +146,24 @@ def media(a, b, c):
 
     return round((a + b + c) / 3, 3)
 
+# a função média
+
 # 9.c)
 
 def suavizar(f, lista):
 
-    resultado = lista[:]
+    resultado = lista[:] 
+    # aqui precisamos criar uma lista de cópia, já que iremos manipular apenas alguns valores seletos da lista original,
+    # sem alteração do primeiro e último termo.
+
     for i in range(1, len(lista) - 1):
         resultado[i] = f(lista[i-1], lista[i], lista[i+1])
-    return resultado
+
+    # resultado[i] é o equivalente ao intervalo dos números de lista, sem os seus extremos.
+    # lista[i-1] garante que iremos pegar o primeiro extremo para 'suavizar' ele.
+    # lista[i+1] garante o mesmo para a extremidade final.
+    
+    return resultado # aqui retornamos a lista final.
         
         
 print(suavizar(media, [1, 3, 7, 9, 4]))
