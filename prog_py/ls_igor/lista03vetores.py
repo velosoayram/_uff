@@ -210,7 +210,7 @@ for a in range(100):
     while j >= 0 and agenda[j] > chave: # permitindo que j seja menor que 0, acabaríamos acessando o último elemento da lista indevidamente.
 
         agenda[j+1] = agenda[j] # quando o penúltimo elemento é maior, o último recebe o penúltimo.
-                                # e assim regressivamente, caso necessrário.
+                                # e assim regressivamente, caso necessário.
 
         j -= 1 # o processo é repetido n vezes até que a chave seja de fato o menor elemento da lista, então percorremos com o índice j, que deixa de ser o penúltimo item.
                # e quando/se j vira -1, o loop acaba.
