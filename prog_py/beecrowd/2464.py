@@ -9,4 +9,4 @@ for i, v in enumerate(codigo):
 print(''.join(codigo))
 
 
-# DECIFRA 2.0
+# DECIFRA 2.0 / dicionários dinâmicos / 
