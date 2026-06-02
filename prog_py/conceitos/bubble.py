@@ -31,3 +31,5 @@ print(bubble_sort(lista))
 
 
 # BUBBLE OTIMIZADO:
+
+
