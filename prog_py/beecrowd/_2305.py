@@ -19,32 +19,16 @@ def colheita(matriz, m, n):
     # BUSCA PELO MAIOR.
     maior_colheita = 0
 
-    for l in range():
-        for c in range():
+    for l in range(0, tot_linhas - m + 1):
+        for c in range(0, tot_colunas - n + 1):
 
-            None
+            bloco = sat[l + m][c + n] - sat[l + m][c] - sat[l][c + n] + sat[l][c]
 
+            if bloco > maior_colheita: maior_colheita = bloco
 
+    return print(maior_colheita)
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-    return print()
-
-
+        
 l, c, m, n = map(int, input().split())
 matriz = []
 
