@@ -20,3 +20,37 @@ Saída: para cada caso de teste de entrada haverá um valor na saída, represent
 máximo da pilha de figurinhas que poderia ser trocada entre dois jogadores. */
 
 #include <stdio.h>
+#include <math.h>
+int fmdc(int f1, int f2) {
+
+    int menor, mdc;
+    if (f1 < f2) menor = f1;
+    else menor = f2;
+    
+    for (int i = menor; i > pow(menor, (1/2)); i--) {
+
+        if (f1 % i == 0 && f2 % i == 0) {
+
+            return i;
+        }
+    }
+}
+
+
+int main(void) {
+
+    int n;
+    scanf("%d", &n);
+
+    int f1, f2, a;
+
+    for (int i = 0; i < n; i++) {
+
+        scanf("%d %d", &f1, &f2);
+        
+        a = fmdc(f1, f2);
+        printf("%d\n", a);
+    }
+    
+    return 0;
+}

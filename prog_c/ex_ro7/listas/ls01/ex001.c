@@ -3,7 +3,6 @@ n e retorne os n primeiros números primos existentes. Seu programa para quando 
 igual a zero. */
 
 #include <stdio.h> 
-
 int fprimo(int n) {
 
     if (n < 2) return 0;

@@ -23,3 +23,41 @@ Saída: para cada caso de teste da entrada seu programa deve imprimir uma linha,
 contendo um número inteiro, indicando o número de minutos que Daniela tem para dormir. */
 
 #include <stdio.h>
+#include <locale.h>
+int getMinutes(int tot1, int tot2) {
+
+    if (tot2 <= tot1) {
+
+        tot2 += 1440;
+
+    }
+
+    return tot2 - tot1;
+
+}
+
+
+int main(void){
+
+    setlocale(0, "Portuguese");
+
+    while (1){
+
+        int h1, m1, h2, m2;
+        scanf("%d %d %d %d", &h1, &m1, &h2, &m2);
+
+        if (h1 == 0 && h1 == m1 && m1 == h2 && h2 == m2) break;
+
+        int tot1 = (h1 * 60) + m1;
+        int tot2 = (h2 * 60) + m2;
+
+        int r = getMinutes(tot1, tot2);
+
+        printf("%d minutos disponíveis.\n", r);
+
+    }
+
+    printf("FIM DE PROGRAMA");
+
+    return 0;
+}

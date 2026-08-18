@@ -4,7 +4,6 @@ resposta será os primos 3 e 5. É necessário salientar que n não precisa ser 
 para quando n for menor ou igual a zero. */
 
 #include <stdio.h>
-
 int fprimo(int n) {
 
     if (n < 2) return 0;
