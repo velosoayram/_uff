@@ -27,9 +27,7 @@ contendo um número inteiro, indicando o número de minutos que Daniela tem para
 int getMinutes(int tot1, int tot2) {
 
     if (tot2 <= tot1) {
-
         tot2 += 1440;
-
     }
 
     return tot2 - tot1;

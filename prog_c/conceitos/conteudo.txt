@@ -1,0 +1,40 @@
+anotações:
+
+- manual pelo terminal:
+
+    man <comando>
+
+- parâmetros por terminal
+
+    argc -> quantidade de argumentos
+    **argv -> argumentos por linha
+
+- tipo abstrato de dado (estrutura)
+
+uma representação que exige o uso de mais de um vetor, dos quais devem ser ordenados, são dissociados.
+a solução é o uso de estruturas, que podem agrupar tais vetores.
+
+    struct aluno {
+        int mat;
+        float cr;
+        char nome[31];
+    }
+
+    int main(void) {
+        struct aluno a;
+        scanf("%d%f", &a.mat, &a.cr);
+        .
+        .
+        .
+    }
+
+cópias de estruturas são custosas, utilizamos ponteiros para estruturas para quando necessário.
+
+typedef para apelidar estruturas
+
+    typedef struct aluno {
+        int mat;
+        float cr;
+        char nome[31];
+    } TALUNO; // o apelido.
+
