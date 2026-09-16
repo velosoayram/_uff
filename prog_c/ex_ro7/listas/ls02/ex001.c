@@ -40,50 +40,36 @@ int main(void) {
     return 0;
 }
 
+
+// versão aux + ponteiros:
+
 // #include <stdio.h>
 // void extracao(int *n, int *np1, int *np2) {
-
 // 	*np1 = *n;
-
 // 	while (*np1 >= 100) {
 // 		*np1 /= 10;
 // 	}
-	
 // 	*np2 = *n % 100;
-	
 // }
-
 
 // int teste(int *n) {
-
 // 	if (*n < 1000) return 0;
-
 // 	int np1, np2;
-
 // 	extracao(n, &np1, &np2);
-
 // 	int concat = (np1 * 100) + np2;
-
 // 	if ((np1 + np2) * (np1 + np2) == concat) return 1;
-	
 // 	return 0;
-	
 // }
 
-
 // int main(void) {
-
 // 	int n;
 // 	int *p = &n;
-		
 // 	printf("DIGITE UM NÚMERO: ");
 // 	scanf("%d", &n);
-
 // 	if (teste(p)) {
 // 		printf("%d possui uma propriedade especial.", *p);
 // 	} else {
 // 		printf("%d não possui uma propriedade especial.", *p);
 // 	}
-
 // 	return 0;
 // }
